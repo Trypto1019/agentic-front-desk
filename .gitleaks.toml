@@ -1,0 +1,13 @@
+title = "agentic-front-desk gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Synthetic placeholders"
+regexes = [
+  '''your-(?:key|signing-key|user|password|base64-key)-here''',
+]
+paths = [
+  '''package-lock\.json''',
+]

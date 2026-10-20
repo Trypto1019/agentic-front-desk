@@ -1,0 +1,28 @@
+# secrets
+.env*
+!.env.example
+*.pem
+*.key
+
+# data and dumps
+*.sqlite
+*.db
+*.dump
+*.sql.gz
+logs/
+
+# dependencies and build output
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.next/
+dist/
+coverage/
+evals/.cache/
+
+# local agent tooling
+.claude/
+CLAUDE.md
+AGENTS.md

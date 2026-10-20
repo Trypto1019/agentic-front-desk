@@ -1,0 +1,151 @@
+{
+  "studio": {
+    "name": "Acme Wellness Studio",
+    "timeZone": "America/Los_Angeles",
+    "rooms": [
+      "standard",
+      "suite"
+    ]
+  },
+  "faqFacts": {
+    "hours": "Open daily, first session 8:00 AM, last session 6:00 PM.",
+    "session_length": "Sessions are 45 minutes.",
+    "rooms": "Two room types: standard and suite.",
+    "cancellation": "Cancel or move a session up to 12 hours before it starts.",
+    "pricing": "Pricing is handled by the front-desk team, never by the assistant."
+  },
+  "optOutAck": "You're unsubscribed from Acme Wellness Studio texts and won't receive more. Reply START to resubscribe.",
+  "toolSchemas": {
+    "check_availability": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "room": {
+          "default": "standard",
+          "type": "string",
+          "enum": [
+            "standard",
+            "suite"
+          ]
+        }
+      },
+      "required": [
+        "date",
+        "room"
+      ],
+      "additionalProperties": false
+    },
+    "my_sessions": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {},
+      "additionalProperties": false
+    },
+    "request_booking": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "time": {
+          "type": "string",
+          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+        },
+        "room": {
+          "default": "standard",
+          "type": "string",
+          "enum": [
+            "standard",
+            "suite"
+          ]
+        }
+      },
+      "required": [
+        "date",
+        "time",
+        "room"
+      ],
+      "additionalProperties": false
+    },
+    "request_cancel": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "request_reschedule": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string"
+        },
+        "new_date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "new_time": {
+          "type": "string",
+          "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$"
+        }
+      },
+      "required": [
+        "new_date",
+        "new_time"
+      ],
+      "additionalProperties": false
+    },
+    "request_staff_followup": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "reason": {
+          "type": "string",
+          "enum": [
+            "asked_for_human",
+            "pricing",
+            "billing",
+            "membership",
+            "complaint",
+            "other"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 400
+        }
+      },
+      "required": [
+        "reason",
+        "summary"
+      ],
+      "additionalProperties": false
+    },
+    "membership_change": {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "type": "object",
+      "properties": {
+        "request": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "request"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

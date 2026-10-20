@@ -1,0 +1,26 @@
+{
+  "name": "agentic-front-desk",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reference implementation of a transacting AI front desk: deterministic compliance before the LLM, two-phase confirmations, guarded tools and evidence-gated replies.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit",
+    "demo": "tsx demo/sms-simulator.ts --mock --script",
+    "demo:interactive": "tsx demo/sms-simulator.ts",
+    "evals:specs": "tsx evals/runner/export-specs.ts evals/data/specs.json"
+  },
+  "dependencies": {
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  }
+}
